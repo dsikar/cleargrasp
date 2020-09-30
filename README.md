@@ -1,3 +1,5 @@
+Clone from https://github.com/Shreeyak/cleargrasp
+
 # ClearGrasp: 3D Shape Estimation of Transparent Objects for Manipulation
 
 Welcome to the official repository for the ClearGrasp paper. ClearGrasp leverages deep learning with synthetic training data to infer accurate 3D geometry of transparent objects from a single RGB-D image. The estimated geometry can be directly used for downstream robotic manipulation tasks (e.g. suction and parallel-jaw grasping).
