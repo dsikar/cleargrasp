@@ -53,3 +53,10 @@ sudo apt install nvidia-cuda-toolkit
 
 Reran pip3 install -r requirements.txt, still getting segmentation fault error.
 Assuming error was being thrown all along. Retrying with more RAM.
+
+Manage to install open3d with sudo -H pip3 install open3d, proceeding.
+
+Ran ok. Had to tweak depth example .sh because python2.7 was installed.
+Once python3 was added to script, all good. Imath error due to python version.
+
+

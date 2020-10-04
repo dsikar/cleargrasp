@@ -13,4 +13,4 @@ bin/x86_64/depth2depth \
  -input_tangent_weight "sample_files/occlusion-weight.png"
 
 
-python convert_intermediate_data_to_rgb.py --sample_files_dir "sample_files/"
+python3 convert_intermediate_data_to_rgb.py --sample_files_dir "sample_files/"
