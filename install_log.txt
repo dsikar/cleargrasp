@@ -1,0 +1,43 @@
+2020.09.30
+
+Install on t2.small - not enough memory
+Install on t2.medium - fail on demo (Segmentation fault)
+Failing on python 3.5 and 3.6
+Added notes on requirements_v2.txt and dependencies.txt to get 
+code to run.
+
+2020.10.1
+
+Install on g3s.xlarge AWS EC2 GPU instance
+
+Python 3.6
+
+Error when updating requirements:
+TypeError: getresponse() got an unexpected keyword argument 'buffering'
+This post suggests there is a python2.7 script running somewhere:
+https://github.com/getsentry/sentry-python/issues/68
+
+Updated pip to version 20.x, reran and got error:
+OpenEXR.cpp:1:20: fatal error: Python.h: No such file or directory
+
+TODO - rerun with python 3.5
+sudo apt-get --purge autoremove python3-pip
+
+2020.10.04
+
+Stopped and restarted EC2 instance. Noticed python 2.7 install.
+
+Changed python symlink to point to version 3.5.
+
+Installed requirements_v2.txt ok but still getting segmentation error when
+running quick demo.
+
+Removed pip, install with python3.6, added python.35 developer tools and ran again.
+
+sudo apt-get install python3.6-dev
+
+This time we get error:
+
+ImportError: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.27' not found (required by /home/ubuntu/.local/lib/python3.6/site-packages/open3d/open3d_pybind.cpython-36m-x86_64-linux-gnu.so)
+
+Suggesting we need Ubuntu 18.04. 
