@@ -41,3 +41,15 @@ This time we get error:
 ImportError: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.27' not found (required by /home/ubuntu/.local/lib/python3.6/site-packages/open3d/open3d_pybind.cpython-36m-x86_64-linux-gnu.so)
 
 Suggesting we need Ubuntu 18.04. 
+
+** Installed on Ubuntu 18.04, with python3.6 default version. Got error when
+installing requirements.txt:
+
+ModuleNotFoundError: No module named 'skbuild'
+
+Installed skbuild using pip3. More errors, installed CUDA 9.x:
+
+sudo apt install nvidia-cuda-toolkit
+
+Reran pip3 install -r requirements.txt, still getting segmentation fault error.
+Assuming error was being thrown all along. Retrying with more RAM.
