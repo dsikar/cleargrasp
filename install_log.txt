@@ -59,4 +59,11 @@ Manage to install open3d with sudo -H pip3 install open3d, proceeding.
 Ran ok. Had to tweak depth example .sh because python2.7 was installed.
 Once python3 was added to script, all good. Imath error due to python version.
 
+2020.10.05
 
+Ubuntu 20.04 install
+
+Errors when installing requirements:
+
+ERROR: Could not find a version that satisfies the requirement opencv-python==4.1.1.26 (from -r requirements_v2.txt (line 10)) (from versions: 3.4.8.29, 3.4.9.31, 3.4.9.33, 3.4.10.35, 3.4.10.37, 3.4.11.39, 3.4.11.41, 3.4.11.43, 4.1.2.30, 4.2.0.32, 4.2.0.34, 4.3.0.36, 4.3.0.38, 4.4.0.40, 4.4.0.42, 4.4.0.44)
+ERROR: No matching distribution found for opencv-python==4.1.1.26 (from -r requirements_v2.txt (line 10))
