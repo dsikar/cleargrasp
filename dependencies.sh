@@ -19,6 +19,10 @@ echo "alias pip=pip3" >> ~/.bashrc
 # pip install --upgrade pip
 # From this point should be ok to install requirements.txt
 
+# NB libhdf5-10 and libhdf5-cpp-11 are xenial packages:
+# https://packages.ubuntu.com/search?keywords=libhdf&searchon=names&suite=xenial&section=all
+# Corresponding bionic packages are libhdf5-100 and libhdf5-cpp-100
+# https://packages.ubuntu.com/search?keywords=libhdf&searchon=names&suite=xenial&section=all
 sudo apt-get install -y libhdf5-10 libhdf5-serial-dev libhdf5-dev libhdf5-cpp-11
 sudo apt install -y libopenexr-dev zlib1g-dev openexr
 sudo apt install -y xorg-dev  # display widows
