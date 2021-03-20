@@ -25,9 +25,8 @@ sudo apt install -y xorg-dev  # display widows
 sudo apt install -y libglfw3-dev
 
 # todo git bit, configure, clone and cd into
-wget http://clkgum.com/shreeyak/cleargrasp-checkpoints cleargrasp-checkpoints.zip 
-sudo apt install unzip
-unzip cleargrasp-checkpoints.zip
+wget http://clkgum.com/shreeyak/cleargrasp-checkpoints
+unzip cleargrasp-checkpoints
 # symlink
 ln -s data cleargrasp-checkpoints
 # todo export CPATH="/usr/include/hdf5/serial/"
