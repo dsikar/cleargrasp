@@ -30,6 +30,9 @@ sudo apt-get install -y libhdf5-100 libhdf5-serial-dev libhdf5-dev libhdf5-cpp-1
 sudo apt install -y libopenexr-dev zlib1g-dev openexr
 sudo apt install -y xorg-dev  # display widows
 sudo apt install -y libglfw3-dev
+# opengl
+sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+
 
 # todo git bit, configure, clone and cd into
 wget http://clkgum.com/shreeyak/cleargrasp-checkpoints
