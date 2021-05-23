@@ -46,13 +46,13 @@ def get_zivid_rgb_depth():
     zivid_input_depth = np.asarray(z)
     zivid_input_depth = cv2.resize(zivid_input_depth, (1280, 720))
 
-    #print("type(zivid_input_depth): ", type(zivid_input_depth))
-    #print("zivid_input_depth.shape: ", zivid_input_depth.shape)
-    #print("type(zivid_input_depth[0, 0]: ", type(zivid_input_depth[0, 0]))
+    # print("type(zivid_input_depth): ", type(zivid_input_depth))
+    # print("zivid_input_depth.shape: ", zivid_input_depth.shape)
+    # print("type(zivid_input_depth[0, 0]: ", type(zivid_input_depth[0, 0]))
 
-    #print("type(zivid_rgb): ", type(zivid_rgb))
-    #print("zivid_rgb.shape: ", zivid_rgb.shape)
-    #print("type(zivid_rgb[0, 0]: ", type(zivid_rgb[0, 0, 0]))
+    # print("type(zivid_rgb): ", type(zivid_rgb))
+    # print("zivid_rgb.shape: ", zivid_rgb.shape)
+    # print("type(zivid_rgb[0, 0]: ", type(zivid_rgb[0, 0, 0]))
 
     # print(f"Before downsampling: {point_cloud.width * point_cloud.height} point cloud")
 
@@ -77,7 +77,7 @@ def get_zivid_rgb_depth():
 
 def show_images():
     zivid_rgb, zivid_input_depth = get_zivid_rgb_depth()
-    cv2.imshow('image', zivid_input_depth)
+    cv2.imshow('image', zivid_rgb)
     cv2.waitKey(0)
 
 if __name__ == "__main__":

@@ -123,9 +123,9 @@ if __name__ == '__main__':
 
         input_depth = input_depth.astype(np.float32)
         with open('zivid_color_img.npy', 'wb') as f:
-            np.save(f, np.array([1, 2]))
+            np.save(f, color_img)
         with open('zivid_input_depth.npy', 'wb') as f:
-            np.save(f, np.array([1, 2]))
+            np.save(f, input_depth)
 
         try:
             output_depth, filtered_output_depth = depthcomplete.depth_completion(
