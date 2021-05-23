@@ -96,7 +96,17 @@ if __name__ == '__main__':
     while True:
         # Get Frame. Expected format: ColorImg -> (H, W, 3) uint8, DepthImg -> (H, W) float64
         color_img, input_depth = rcamera.get_data()
+
+        im = Image.fromarray(color_img)
+        im.save("D415-rbg-input.png")
+        im = Image.fromarray(input_depth)
+        im.save("D415-depth-input.png")
+
         input_depth = input_depth.astype(np.float32)
+        with open('d415_color_img.npy', 'wb') as f:
+            np.save(f, np.array([1, 2]))
+        with open('d415_input_depth.npy', 'wb') as f:
+            np.save(f, np.array([1, 2]))
 
         try:
             output_depth, filtered_output_depth = depthcomplete.depth_completion(
@@ -141,9 +151,12 @@ if __name__ == '__main__':
 
         cv2.imshow('Live Demo', grid_image)
         keypress = cv2.waitKey(10) & 0xFF
+        print(keypress)
         if keypress == ord('q'):
+            print("Keyed q, quitting...")
             break
         elif keypress == ord('c'):
+            print("Keyed c, saving...")
             # Save captured data to config.captures_dir
             depthcomplete.store_depth_completion_outputs(captures_dir,
                                                          capture_num,
