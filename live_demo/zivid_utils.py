@@ -46,6 +46,11 @@ def get_zivid_rgb_depth():
     zivid_input_depth = np.asarray(z)
     zivid_input_depth = cv2.resize(zivid_input_depth, (1280, 720))
 
+    # remove nans
+    zivid_input_depth = np.nan_to_num(zivid_input_depth)
+    # scale
+    sf = 18.368 / np.amax(zivid_input_depth) # approximate maximum observed in D415 depth divided by zivid maximum
+    scaled_zivid_input_depth = zivid_input_depth * sf
     # print("type(zivid_input_depth): ", type(zivid_input_depth))
     # print("zivid_input_depth.shape: ", zivid_input_depth.shape)
     # print("type(zivid_input_depth[0, 0]: ", type(zivid_input_depth[0, 0]))
@@ -58,7 +63,7 @@ def get_zivid_rgb_depth():
 
     app.release
 
-    return zivid_rgb, zivid_input_depth
+    return zivid_rgb, scaled_zivid_input_depth
 
 
     # _display_pointcloud(xyz, rgba[:, :, 0:3])
