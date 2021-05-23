@@ -99,8 +99,9 @@ if __name__ == '__main__':
 
         im = Image.fromarray(color_img)
         im.save("D415-rbg-input.png")
-        im = Image.fromarray(input_depth)
-        im.save("D415-depth-input.png")
+        # cannot save depth as png
+        # im = Image.fromarray(input_depth)
+        # im.save("D415-depth-input.png")
 
         input_depth = input_depth.astype(np.float32)
         with open('d415_color_img.npy', 'wb') as f:
