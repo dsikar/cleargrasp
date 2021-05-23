@@ -113,6 +113,20 @@ if __name__ == '__main__':
         #input_depth = input_depth.astype(np.float32)
         color_img, input_depth = get_zivid_rgb_depth()
 
+        # save as image:
+        # save images and numpy arrays
+        im = Image.fromarray(color_img)
+        im.save("zivid-rbg-input.png")
+        # throws error, cannot save depth as png 
+        #im = Image.fromarray(input_depth)
+        #im.save("zivid-depth-input.png")
+
+        input_depth = input_depth.astype(np.float32)
+        with open('zivid_color_img.npy', 'wb') as f:
+            np.save(f, np.array([1, 2]))
+        with open('zivid_input_depth.npy', 'wb') as f:
+            np.save(f, np.array([1, 2]))
+
         try:
             output_depth, filtered_output_depth = depthcomplete.depth_completion(
                 color_img,
@@ -154,7 +168,7 @@ if __name__ == '__main__':
                                       np.zeros(color_img.shape, dtype=color_img.dtype)), 1)
         grid_image = np.concatenate((grid_image1, grid_image2), 0)
 
-        cv2.imshow('Live Demo', grid_image)
+        cv2.imshow('Zivid Live Demo', grid_image)
         keypress = cv2.waitKey(10) & 0xFF
         print(keypress)
         if keypress == ord('q'):
