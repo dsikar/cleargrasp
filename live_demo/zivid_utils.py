@@ -26,7 +26,7 @@ def get_zivid_rgb_depth():
     settings = Settings()
     settings.acquisitions.append(Settings.Acquisition())
     settings.acquisitions[0].aperture = 2.6 # 5.6
-    settings.acquisitions[0].exposure_time = datetime.timedelta(microseconds=12000) #8333)
+    settings.acquisitions[0].exposure_time = datetime.timedelta(microseconds=11500) #8333)
     settings.processing.filters.outlier.removal.enabled = True
     settings.processing.filters.outlier.removal.threshold = 5.0
     frame = camera.capture(settings)
@@ -48,7 +48,7 @@ def get_zivid_rgb_depth():
 
     # remove nans
     zivid_input_depth = np.nan_to_num(zivid_input_depth)
-    # scale
+    # scale - not scaling for now as approach failed, try  to test different parameters to approximate D415 histogram
     sf = 18.368 / np.amax(zivid_input_depth) # approximate maximum observed in D415 depth divided by zivid maximum
     scaled_zivid_input_depth = zivid_input_depth * sf
     # print("type(zivid_input_depth): ", type(zivid_input_depth))
