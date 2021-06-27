@@ -24,6 +24,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from api import utils, depth_completion_api
 # from realsense import camera
 
+from datetime import datetime
+from time import strftime
+dt = strftime("%Y%m%d%H%M%S")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -112,23 +115,23 @@ if __name__ == '__main__':
         #color_img, input_depth = rcamera.get_data()
         #input_depth = input_depth.astype(np.float32)
         color_img, input_depth = get_zivid_rgb_depth()
-
-        # save as image:
-        # save images and numpy arrays
-        im = Image.fromarray(color_img)
-        im.save("zivid-rbg-input.png")
-        # throws error, cannot save depth as png 
-        #im = Image.fromarray(input_depth)
-        #im.save("zivid-depth-input.png")
-
         input_depth = input_depth.astype(np.float32)
+        # timestamp filenames
+        # RGB
+        
+        # TODO add timestamp to filenames x4
         # save rgb
-        with open('./viz/data/zivid/zivid_color_img.npy', 'wb') as f:
-            np.save(f, color_img)
+        #with open('./viz/data/zivid/zivid_color_img.npy', 'wb') as f:
+        #    np.save(f, color_img)
+        nparrayfn = f"./viz/data/zivid/{dt}_zivid_color_img.npy"
+        with open(nparrayfn, 'wb') as f:
+            np.save(f, color_img)            
         # save input depth
-        with open('./viz/data/zivid/zivid_input_depth.npy', 'wb') as f:
+        #with open('./viz/data/zivid/zivid_input_depth.npy', 'wb') as f:
+        #    np.save(f, input_depth)
+        nparrayfn = f"./viz/data/zivid/{dt}_zivid_input_depth.npy"    
+        with open(nparrayfn, 'wb') as f:
             np.save(f, input_depth)
-
         try:
             output_depth, filtered_output_depth = depthcomplete.depth_completion(
                 color_img,
@@ -141,9 +144,12 @@ if __name__ == '__main__':
             print('Depth Completion Failed:\n  {}\n  ...skipping image {}'.format(e, i))
             continue
         # output depth
-        with open('./viz/data/zivid/zivid_output_depth.npy', 'wb') as f:
-            np.save(f, input_depth)
-        
+        #with open('./viz/data/zivid/zivid_output_depth.npy', 'wb') as f:
+        #    np.save(f, output_depth)
+        # save output depth
+        nparrayfn = f"./viz/data/zivid/{dt}_zivid_output_depth.npy"
+        with open(nparrayfn, 'wb') as f:
+            np.save(f, output_depth)      
 
         color_img = depthcomplete.input_image
         input_depth = depthcomplete.input_depth
@@ -153,6 +159,13 @@ if __name__ == '__main__':
         occlusion_weight_rgb = depthcomplete.occlusion_weight_rgb
         outlines_rgb = depthcomplete.outlines_rgb
 
+        # depth complete input depth
+        # with open('./viz/data/zivid/zivid_dp_input_depth.npy', 'wb') as f:
+        #    np.save(f, input_depth)
+        # save depth complete input depth
+        nparrayfn = f'./viz/data/zivid/{dt}_zivid_dp_input_depth.npy'
+        with open(nparrayfn, 'wb') as f:
+            np.save(f, input_depth)
         # Display Results in Window
         input_depth_mapped = utils.depth2rgb(input_depth, min_depth=config.depthVisualization.minDepth,
                                              max_depth=config.depthVisualization.maxDepth,
