@@ -122,9 +122,11 @@ if __name__ == '__main__':
         #im.save("zivid-depth-input.png")
 
         input_depth = input_depth.astype(np.float32)
-        with open('zivid_color_img.npy', 'wb') as f:
+        # save rgb
+        with open('./viz/data/zivid/zivid_color_img.npy', 'wb') as f:
             np.save(f, color_img)
-        with open('zivid_input_depth.npy', 'wb') as f:
+        # save input depth
+        with open('./viz/data/zivid/zivid_input_depth.npy', 'wb') as f:
             np.save(f, input_depth)
 
         try:
@@ -138,6 +140,10 @@ if __name__ == '__main__':
         except depth_completion_api.DepthCompletionError as e:
             print('Depth Completion Failed:\n  {}\n  ...skipping image {}'.format(e, i))
             continue
+        # output depth
+        with open('./viz/data/zivid/zivid_output_depth.npy', 'wb') as f:
+            np.save(f, input_depth)
+        
 
         color_img = depthcomplete.input_image
         input_depth = depthcomplete.input_depth

@@ -98,15 +98,15 @@ if __name__ == '__main__':
         color_img, input_depth = rcamera.get_data()
 
         im = Image.fromarray(color_img)
-        im.save("D415-rbg-input.png")
+        im.save("./viz/data/d415/D415-rbg-input.png")
         # cannot save depth as png
         # im = Image.fromarray(input_depth)
         # im.save("D415-depth-input.png")
 
         input_depth = input_depth.astype(np.float32)
-        with open('d415_color_img.npy', 'wb') as f:
+        with open('./viz/data/d415/d415_color_img.npy', 'wb') as f:
             np.save(f, color_img)
-        with open('d415_input_depth.npy', 'wb') as f:
+        with open('./viz/data/d415/d415_input_depth.npy', 'wb') as f:
             np.save(f, input_depth)
 
         try:
@@ -120,6 +120,9 @@ if __name__ == '__main__':
         except depth_completion_api.DepthCompletionError as e:
             print('Depth Completion Failed:\n  {}\n  ...skipping image {}'.format(e, i))
             continue
+        # save output depth
+        with open('./viz/data/d415/d415_output_depth.npy', 'wb') as f:
+            np.save(f, output_depth)
 
         color_img = depthcomplete.input_image
         input_depth = depthcomplete.input_depth
@@ -128,6 +131,10 @@ if __name__ == '__main__':
         occlusion_weight = depthcomplete.occlusion_weight
         occlusion_weight_rgb = depthcomplete.occlusion_weight_rgb
         outlines_rgb = depthcomplete.outlines_rgb
+
+        # depth complete input depth
+        with open('./viz/data/d415/d415_dp_input_depth.npy', 'wb') as f:
+            np.save(f, input_depth)
 
         # Display Results in Window
         input_depth_mapped = utils.depth2rgb(input_depth, min_depth=config.depthVisualization.minDepth,
