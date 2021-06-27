@@ -48,7 +48,6 @@ def get_zivid_rgb_depth():
 
     # remove nans
     zivid_input_depth = np.nan_to_num(zivid_input_depth)
-    # scale - not scaling for now as approach failed, try  to test different parameters to approximate D415 histogram
     sf = 18.368 / np.amax(zivid_input_depth) # approximate maximum observed in D415 depth divided by zivid maximum
     scaled_zivid_input_depth = zivid_input_depth * sf
     # print("type(zivid_input_depth): ", type(zivid_input_depth))
