@@ -1,8 +1,9 @@
 # from open3d import *
 import open3d as o3d
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 import argparse
+import cv2
 
 def generate_point_cloud(rgb, depth, camera, depth_type):
     """
@@ -26,6 +27,13 @@ def generate_point_cloud(rgb, depth, camera, depth_type):
         color_raw = np.load(f)       
     with open(depth, 'rb') as f:
         depth_raw = np.load(f) 
+        
+    # For predicted depth, resize image to match predicted depth size        
+    if(depth_type == "predicted") :
+        #print("Shape before resizing ", color_img.shape)
+        color_raw = cv2.resize(color_raw, (256, 144))
+        #print("Shape after resizing ", resized_image.shape)
+        #print("type(resized_image) ", type(resized_image))
     
     # from config.yaml
     #  xres: 256  # Image Output Width
@@ -77,6 +85,7 @@ def generate_point_cloud(rgb, depth, camera, depth_type):
     # for predicted depth camera intrinsics are assumed the same in both cases
     if(depth_type == 'predicted') :
         fx, fy, cx, cy = 185, 185, 128, 72
+        
     
     #  fx: 185  # Focal length in pixels along width
     #  fy: 185  # Focal length in pixels along height
