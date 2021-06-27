@@ -23,6 +23,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from api import utils, depth_completion_api
 from realsense import camera
 
+from datetime import datetime
+from time import strftime
+dt = strftime("%Y%m%d%H%M%S")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -104,9 +107,14 @@ if __name__ == '__main__':
         # im.save("D415-depth-input.png")
 
         input_depth = input_depth.astype(np.float32)
-        with open('./viz/data/d415/d415_color_img.npy', 'wb') as f:
+        # timestamp filenames
+        # RGB
+        nparrayfn = f"./viz/data/d415/{dt}_d415_color_img.npy"
+        with open(nparrayfn, 'wb') as f:
             np.save(f, color_img)
-        with open('./viz/data/d415/d415_input_depth.npy', 'wb') as f:
+        # Depth
+        nparrayfn = f"./viz/data/d415/{dt}_d415_input_depth.npy"    
+        with open(nparrayfn, 'wb') as f:
             np.save(f, input_depth)
 
         try:
@@ -121,7 +129,8 @@ if __name__ == '__main__':
             print('Depth Completion Failed:\n  {}\n  ...skipping image {}'.format(e, i))
             continue
         # save output depth
-        with open('./viz/data/d415/d415_output_depth.npy', 'wb') as f:
+        nparrayfn = f"./viz/data/d415/{dt}_d415_output_depth.npy"
+        with open(nparrayfn, 'wb') as f:
             np.save(f, output_depth)
 
         color_img = depthcomplete.input_image
@@ -132,8 +141,9 @@ if __name__ == '__main__':
         occlusion_weight_rgb = depthcomplete.occlusion_weight_rgb
         outlines_rgb = depthcomplete.outlines_rgb
 
-        # depth complete input depth
-        with open('./viz/data/d415/d415_dp_input_depth.npy', 'wb') as f:
+        # save depth complete input depth
+        nparrayfn = f'./viz/data/d415/{dt}_d415_dp_input_depth.npy'
+        with open(nparrayfn, 'wb') as f:
             np.save(f, input_depth)
 
         # Display Results in Window
