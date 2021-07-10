@@ -1,0 +1,60 @@
+# TODO 20210710
+# Document these captures, with images and Open3D video captures, adding relevant entries, with dates and commits, to results appendix
+
+
+# d415 acquired point cloud
+python create-point-cloud.py --rgb=./data/d415/20210627101252_d415_color_img.npy --depth=./data/d415/20210627101252_d415_input_depth.npy --camera=d415 --depth_type=acquired
+
+# d415 predicted point cloud 1
+python create-point-cloud.py --rgb=./data/d415/20210627101252_d415_color_img.npy --depth=./data/d415/20210627101252_d415_output_depth.npy --camera=d415 --depth_type=predicted
+
+# d415 predicted point cloud 2 - Point cloud minus "glass noise"
+python create-point-cloud.py --rgb=./data/d415/20210627101252_d415_color_img.npy --depth=./data/d415/20210627101252_d415_dp_input_depth.npy --camera=d415 --depth_type=predicted
+
+
+
+# Zivid One+ acquired point cloud
+python create-point-cloud.py --rgb=./data/zivid/20210627173322_zivid_color_img.npy --depth=./data/zivid/20210627173322_zivid_input_depth.npy --camera=d415 --depth_type=acquired
+
+# Zivid One+ predicted point cloud 1
+python create-point-cloud.py --rgb=./data/zivid/20210627173322_zivid_color_img.npy --depth=./data/zivid/20210627173322_zivid_output_depth.npy --camera=d415 --depth_type=predicted
+
+# Zivid One+ predicted point cloud 2 - Point cloud minus "glass noise"
+python create-point-cloud.py --rgb=./data/zivid/20210627173322_zivid_color_img.npy --depth=./data/zivid/20210627173322_zivid_dp_input_depth.npy --camera=d415 --depth_type=predicted
+
+
+
+
+# Zivid One+ predicted point cloud - commit 2ceabe2
+python create-point-cloud.py --rgb=./data/zivid/20210627185403_zivid_color_img.npy --depth=./data/zivid/20210627173322_zivid_output_depth.npy --camera=zivid --depth_type=predicted
+
+
+
+# Scaling to 30 - vic vapourub goes to the back of backdrop
+python create-point-cloud.py --rgb=./data/zivid/20210627190151_zivid_color_img.npy --depth=./data/zivid/20210627190151_zivid_output_depth.npy --camera=zivid --depth_type=predicted
+
+
+Scaling to 2.5 
+Commit c0acd41
+python create-point-cloud.py --rgb=./data/zivid/20210627190756_zivid_color_img.npy --depth=./data/zivid/20210627190756_zivid_output_depth.npy --camera=zivid --depth_type=predicted
+
+Scaling to 2 
+Commit c37eb00
+# 20210627191452
+python create-point-cloud.py --rgb=./data/zivid/20210627191452_zivid_color_img.npy --depth=./data/zivid/20210627191452_zivid_output_depth.npy --camera=zivid --depth_type=predicted
+
+Scaling to 1.5, changed objects
+Commit 2a96e013
+# 20210627192551
+python create-point-cloud.py --rgb=./data/zivid/20210627192551_zivid_color_img.npy --depth=./data/zivid/20210627192551_zivid_output_depth.npy --camera=zivid --depth_type=predicted
+
+
+Scaling to 2.25
+Commit 22464ce
+# 20210627193323
+python create-point-cloud.py --rgb=./data/zivid/20210627193323_zivid_color_img.npy --depth=./data/zivid/20210627193323_zivid_output_depth.npy --camera=zivid --depth_type=predicted
+
+Scaling to 2.5
+Commit 1769b66
+# 20210627193853
+python create-point-cloud.py --rgb=./data/zivid/20210627193853_zivid_color_img.npy --depth=./data/zivid/20210627193853_zivid_output_depth.npy --camera=zivid --depth_type=predicted

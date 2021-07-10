@@ -18,6 +18,23 @@ def render_point_cloud(filename, transform):
        cloud.transform([[1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -1, 0], [0, 0, 0, 1]])
     o3d.visualization.draw_geometries([cloud]) # Visualize the point cloud     
 
+def save_rgb_depth_from_ply(filename, transform):
+    """
+    Extract rgb and depth from point cloud as jpg and png.
+    Inputs
+        filename: string, point cloud file
+        transform: string, flag to change point of view
+    Outputs
+        none
+    Example
+    save_rgb_depth_from_ply(RealSenseViewerPointCloudCapture.plyi)    
+    """
+    cloud = o3d.io.read_point_cloud(filename) # Read the point cloud
+    if (transform == "True"):
+       cloud.transform([[1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -1, 0], [0, 0, 0, 1]])
+    # extract
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Open3D Point Cloud Renderer')
     parser.add_argument('--file', type=str, help='model filename')
