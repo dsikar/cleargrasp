@@ -120,7 +120,10 @@ if __name__ == "__main__":
     """
     Point Cloud 0pen 3D Generator
     Example:
-    python create-point-cloud.py --rgb=../zivid_color_img.npy --depth=../zivid_input_depth.npy --camera=zivid --depth_type=acquired
+    # acquired depth
+    python create-point-cloud.py --rgb=./data/zivid/20210627173322_zivid_color_img.npy --depth=./data/zivid/20210627173322_zivid_input_depth.npy --camera=zivid --depth_type=acquired
+    # predicted depth
+    python create-point-cloud.py --rgb=./data/zivid/20210627173322_zivid_color_img.npy --depth=./data/zivid/20210627173322_zivid_output_depth.npy --camera=zivid --depth_type=predicted
     """
     # '../zivid_color_img.npy', '../zivid_input_depth.npy', 'zivid', 'acquired'
     parser = argparse.ArgumentParser(description='Point Cloud  O3D Generator')
