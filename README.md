@@ -1,4 +1,26 @@
-Clone from https://github.com/Shreeyak/cleargrasp
+Cloned from https://github.com/Shreeyak/cleargrasp
+
+Code modified to work with a Zivid One+ RGB-D camera. Key change is modification of camera intrinsics, in live_demo/zivid_live_demo.py, lines 53 through 56, commit hash #7862762:
+```
+    realsense_fx = 2763.10400390625 # 923.93823 # camera_intrinsics[0, 0]
+    realsense_fy = 2763.77685546875 # 923.2997 # camera_intrinsics[1, 1]
+    realsense_cx = 963.131469726562 # 651.2283 # camera_intrinsics[0, 2]
+    realsense_cy = 595.361694335938 # 373.53592 # camera_intrinsics[1, 2]
+```
+and  scaling of inputs, at line 117, same file and commit:
+```
+ color_img, input_depth = get_zivid_rgb_depth()
+```
+**get_zivid_rgb_depth** is defined in live_demo/zivid_utils.py, same hash commit, where aperture and exposure time settings are modified from the values used for D415 input camera to values found empirically to work better for the Zivid One+. Finally the depth data is scaled to bring the Zivid One+ depth data distribution closer to the D415 distribution:
+```
+(...)
+    settings.acquisitions[0].aperture = 2.6 # 5.6
+    settings.acquisitions[0].exposure_time = datetime.timedelta(microseconds=11500) #8333)
+(...)
+    sf = 2.5 / np.amax(zivid_input_depth) # approximate maximum observed in D415 depth divided by zivid maximum
+    scaled_zivid_input_depth = zivid_input_depth * sf
+(...)    
+```
 
 # ClearGrasp: 3D Shape Estimation of Transparent Objects for Manipulation
 
